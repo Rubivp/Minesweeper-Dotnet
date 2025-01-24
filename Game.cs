@@ -41,7 +41,7 @@ namespace Minesweeper
             ConsoleKey input;
             while (true)
             {
-                //El bool es necesario para evitar mostrar el input en pantalla
+                //Bool needed to prevent inputs being written to the terminal
                 input = Console.ReadKey(true).Key;
                 switch (input)
                 {
@@ -61,7 +61,7 @@ namespace Minesweeper
                         if (cursor_x < board.GetBoardX() - 1) { cursor_x++; return; }
                         else { break; }
 
-                    case ConsoleKey.F: //Quitar/Poner bandera
+                    case ConsoleKey.F: //place/remove flag
                         if (playfield[cursor_y, cursor_x] == '#')
                         {
                             playfield[cursor_y, cursor_x] = 'F';
@@ -76,7 +76,7 @@ namespace Minesweeper
                         }
                         else { break; }
 
-                    case ConsoleKey.D: //revelar casilla
+                    case ConsoleKey.D: //reveal tile
                         RemoveTile(cursor_y,cursor_x,playfield[cursor_y,cursor_x]);
                         return;
 
@@ -138,16 +138,16 @@ namespace Minesweeper
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Ganaste!");
+                Console.WriteLine("You Win!");
             }
             else
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Perdiste...");
+                Console.WriteLine("You Lost...");
             }
 
-            Console.Write("Quieres volver a jugar? [S/n]");
+            Console.Write("Play again? [Y/n]");
             Console.ResetColor();
 
 
@@ -157,7 +157,7 @@ namespace Minesweeper
                 input = Console.ReadKey(false).Key;
                 switch (input)
                 {
-                    case ConsoleKey.S:
+                    case ConsoleKey.Y:
                         return;
 
                     case ConsoleKey.N:
@@ -217,10 +217,10 @@ namespace Minesweeper
             if (flags < 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Banderas: {0}\n", flags);
+                Console.WriteLine("Flags: {0}\n", flags);
                 Console.ResetColor();
             }
-            else { Console.WriteLine("Banderas: {0}\n", flags); }
+            else { Console.WriteLine("Flags: {0}\n", flags); }
 
 
             for (int i = 0; i < board.GetBoardY(); i++)
@@ -245,17 +245,17 @@ namespace Minesweeper
             if (showcontrols == true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("\nControles:\n" +
-                "Flechas: Mover Cursor\n" +
-                "D: Revelar Casilla\n" +
-                "F: Colocar Bandera\n" +
+                Console.Write("\nControls:\n" +
+                "Arrows: Move Cursor\n" +
+                "D: Reveal Tile\n" +
+                "F: Place/Remove Flag\n" +
                 "Tab: Menu");
                 Console.ResetColor();
                 Console.WriteLine();
             }
         }
 
-        // x -> Mina, F -> Bandera, . -> Espacio Vacio, # -> Casilla sin Revelar
+        // x -> Mine, F -> Flag, . -> Empty Space, # -> Veiled Tile
         private static void Colorize(char input)
         {
             switch (input)

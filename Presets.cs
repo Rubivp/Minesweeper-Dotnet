@@ -20,14 +20,14 @@ namespace Minesweeper
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            Console.WriteLine("// Opciones //\n\n" +
-            "----------- Dificultades -----------\n\n"+
-            " [1] - Principiante (8x8, 10 minas)\n" +
-            " [2] - Intermedio (16x16, 40 minas)\n" +
-            " [3] - Experto (30x16, 99 minas)\n" +
+            Console.WriteLine("// Settings //\n\n" +
+            "----------- Board Types -----------\n\n"+
+            " [1] - Beginner (8x8 / 10 mines)\n" +
+            " [2] - Intermediate (16x16 / 40 mines)\n" +
+            " [3] - Expert (30x16 / 99 mines)\n" +
             "\n------------------------------------\n\n"+
-            "[tab] - Volver Atras\n" +
-            "[esc] - Cerrar Juego\n");
+            "[tab] - Return To Game\n" +
+            "[esc] - Close Game\n");
 
             Console.ResetColor();
 
@@ -59,7 +59,7 @@ namespace Minesweeper
                     case ConsoleKey.D3:
                         width = 32;
                         height = 16;
-                        mines = 90;
+                        mines = 99;
                         return true;
 
                     default: break;
